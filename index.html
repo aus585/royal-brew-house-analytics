@@ -872,8 +872,8 @@ function handleReservationSubmit(event) {
     submitBtn.disabled = true;
     submitBtn.innerText = "PROCESSING RESERVATION...";
 
-    fetch('http://localhost:3000/api/reservation', {
-        method: 'POST',
+fetch('/api/reservation', {       
+     method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
