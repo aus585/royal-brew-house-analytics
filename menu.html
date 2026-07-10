@@ -338,17 +338,20 @@
         .add-btn:hover { background-color: #333; }
 
         /* --- SHOPPING CART RIGHT PANEL --- */
-        .cart-panel {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            border-radius: 12px;
-            padding: 20px;
-            position: sticky;
-            top: 20px;
-            height: calc(100vh - 40px);
-            display: flex;
-            flex-direction: column;
-        }
+      .cart-panel {
+    color: var(--text-light);
+    border-radius: 12px;
+    padding: 20px;
+    position: sticky;
+    top: 20px;
+    height: calc(100vh - 40px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Keeps the background image clipped inside the corners */
+    
+    background: linear-gradient(rgba(17, 17, 17, 0.906), rgba(17, 17, 17, 0.907)), 
+                url('/photos/cart bg.jpeg') no-repeat center center/cover;
+}
 
         .cart-header {
             display: flex;
@@ -705,105 +708,257 @@
                 <div class="promo-banner-vertical">
                     <h4>BREWED</h4>
                     <p>TO PERFECTION</p>
-                    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=150" style="width:65px; height:65px; border-radius:50%; object-fit:cover;" alt="promo ring">
                 </div>
             </aside>
 
             <main class="menu-content">
                 
                 <section id="coffee" class="category-section">
-                    <h3 class="section-header">Coffee Selection</h3>
-                    <div class="products-grid">
-                        <div class="product-card">
-                            <div class="img-container">
-                                <span class="badge bestseller">Bestseller</span>
-                                <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed635d?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Cappuccino">
-                            </div>
-                            <div class="product-details">
-                                <h4 class="product-title">Cappuccino</h4>
-                                <p class="product-desc">Classic espresso balance with dynamic foam texture.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">₹199</span>
-                                    <button class="add-btn" onclick="addToCart('capp', 'Cappuccino', 199, 'https://images.unsplash.com/photo-1571115177098-24ec42ed635d?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="img-container">
-                                <span class="badge new">New</span>
-                                <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Iced Caramel Latte">
-                            </div>
-                            <div class="product-details">
-                                <h4 class="product-title">Iced Caramel Latte</h4>
-                                <p class="product-desc">Espresso combined with chilled milk and caramel details.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">₹229</span>
-                                    <button class="add-btn" onclick="addToCart('caramel', 'Iced Caramel Latte', 229, 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="img-container">
-                                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Hazelnut Mocha">
-                            </div>
-                            <div class="product-details">
-                                <h4 class="product-title">Hazelnut Mocha</h4>
-                                <p class="product-desc">Rich standard espresso chocolate mix with hazelnut notes.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">₹249</span>
-                                    <button class="add-btn" onclick="addToCart('hazel', 'Hazelnut Mocha', 249, 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+    <h3 class="section-header">Coffee Selection</h3>
+    <div class="products-grid">
+        
+        <div class="product-card">
+            <div class="img-container">
+                <span class="badge bestseller">Bestseller</span>
+                <img src="/photos/cappuccino.png" class="product-img" alt="Cappuccino">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Cappuccino</h4>
+                <p class="product-desc">Classic espresso balance with dynamic foam texture.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹199</span>
+                    <button class="add-btn" onclick="addToCart('capp', 'Cappuccino', 199, '/photos/cappuccino.png')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div> <div class="product-card">
+            <div class="img-container">
+                <img src="/photos/espresso.png" class="product-img" alt="Espresso">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Espresso</h4>
+                <p class="product-desc">A rich and intense shot of freshly brewed coffee with a bold aroma and smooth finish.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹120</span>
+                    <button class="add-btn" onclick="addToCart('espresso', 'Espresso', 120, '/photos/espresso.png')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
 
-                <section id="lunch" class="category-section">
-                    <h3 class="section-header">Lunch / Snacks</h3>
-                    <div class="products-grid">
-                        <div class="product-card">
-                            <div class="img-container">
-                                <span class="veg-icon"></span>
-                                <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Club Sandwich">
-                            </div>
-                            <div class="product-details">
-                                <h4 class="product-title">Club Sandwich</h4>
-                                <p class="product-desc">Layered crisp fresh garden veggies with rich dynamic mayo spread.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">₹249</span>
-                                    <button class="add-btn" onclick="addToCart('club', 'Club Sandwich', 249, 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="img-container">
-                                <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Cheesy Fries">
-                            </div>
-                            <div class="product-details">
-                                <h4 class="product-title">Cheesy Fries</h4>
-                                <p class="product-desc">Golden crisp fries completely topped with molten cheddar blend.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">₹199</span>
-                                    <button class="add-btn" onclick="addToCart('fries', 'Cheesy Fries', 199, 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="img-container">
-                                <span class="veg-icon"></span>
-                                <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Garlic Bruschetta">
-                            </div>
-                            <div class="product-details">
-                                <h4 class="product-title">Garlic Bruschetta</h4>
-                                <p class="product-desc">Toasted artisan herb bread layers topped with diced tomatoes.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">₹189</span>
-                                    <button class="add-btn" onclick="addToCart('bruschetta', 'Garlic Bruschetta', 189, 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+        <div class="product-card">
+            <div class="img-container">
+                <span class="badge new">New</span>
+                <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Iced Caramel Latte">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Iced Caramel Latte</h4>
+                <p class="product-desc">Espresso combined with chilled milk and caramel details.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹229</span>
+                    <button class="add-btn" onclick="addToCart('caramel', 'Iced Caramel Latte', 229, 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="img-container">
+                <img src="/photos/Cafe Latte.jpg" class="product-img" alt="Café Latte">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Café Latte</h4>
+                <p class="product-desc">A creamy blend of espresso and steamed milk topped with a light layer of foam.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹180</span>
+                    <button class="add-btn" onclick="addToCart('Café Latte', 'Café Latte', 180, '/photos/Cafe Latte.jpg')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+          <div class="product-card">
+            <div class="img-container">
+                <img src="/photos/flat white .jpeg" class="product-img" alt="Flat White">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Flat White</h4>
+                <p class="product-desc">A velvety coffee with a double espresso shot and silky steamed milk for a smooth texture.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹200</span>
+                    <button class="add-btn" onclick="addToCart('Flat White', 'Flat White', 200, '/photos/flat white .jpeg')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+         <div class="product-card">
+            <div class="img-container">
+            <span class="badge bestseller">Bestseller</span>
+                <img src="/photos/filter coffee.jpeg" class="product-img" alt="South Indian Filter Coffee">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">South Indian Filter Coffee</h4>
+                <p class="product-desc">Traditional Indian coffee brewed with a strong decoction, milk, and sugar for an authentic flavor.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹140</span>
+                    <button class="add-btn" onclick="addToCart('South Indian Filter Coffee', 'South Indian Filter Coffee', 140, '/photos/filter coffee.jpeg')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="img-container">
+                <img src="/photos/cold coffee with ice cream .png" class="product-img" alt=" Cold Coffee with Ice Cream">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Cold Coffee with Ice Cream</h4>
+                <p class="product-desc">A creamy cold coffee topped with a scoop of vanilla ice cream for a rich indulgent treat</p>
+                <div class="product-footer">
+                    <span class="product-price">₹230</span>
+                    <button class="add-btn" onclick="addToCart('Cold Coffee with Ice Cream', 'Cold Coffee with Ice Cream', 230, '/photos/cold coffee with ice cream .png')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+          <div class="product-card">
+            <div class="img-container">
+                <img src="/photos/irish cream latte.jpeg" class="product-img" alt=" Irish Cream Latte">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Irish Cream Latte</h4>
+                <p class="product-desc">A luxurious latte infused with smooth Irish cream flavor for a sweet and aromatic experience.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹220</span>
+                    <button class="add-btn" onclick="addToCart('Irish Cream Latte', 'Irish Cream Latte', 220, '/photos/irish cream latte.jpeg')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="product-card">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Hazelnut Mocha">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Hazelnut Mocha</h4>
+                <p class="product-desc">Rich standard espresso chocolate mix with hazelnut notes.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹249</span>
+                    <button class="add-btn" onclick="addToCart('hazel', 'Hazelnut Mocha', 249, 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+               <section id="lunch" class="category-section">
+    <h3 class="section-header">Lunch / Snacks</h3>
+    <div class="products-grid">
+        
+        <div class="product-card">
+            <div class="img-container">
+                <span class="veg-icon"></span>
+                <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Club Sandwich">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Club Sandwich</h4>
+                <p class="product-desc">Layered crisp fresh garden veggies with rich dynamic mayo spread.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹249</span>
+                    <button class="add-btn" onclick="addToCart('club', 'Club Sandwich', 249, 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+
+        </div> <div class="product-card">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Cheesy Fries">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Cheesy Fries</h4>
+                <p class="product-desc">Golden crisp fries completely topped with molten cheddar blend.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹199</span>
+                    <button class="add-btn" onclick="addToCart('fries', 'Cheesy Fries', 199, 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+
+         </div> <div class="product-card">
+            <div class="img-container">
+                <img src="/photos/loaded nachos.jpeg" class="product-img" alt="Loaded Nachos">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Loaded Nachos</h4>
+                <p class="product-desc">Crunchy nachos topped with cheese, veggies, and delicious sauces.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹240</span>
+                    <button class="add-btn" onclick="addToCart('nachos', 'Loaded Nachos', 240, '/photos/loaded nachos.jpeg')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+
+              </div> <div class="product-card">
+            <div class="img-container">
+                <img src="/photos/bread.png" class="product-img" alt="Cheese Garlic Bread">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Cheese Garlic Bread</h4>
+                <p class="product-desc">Toasted garlic bread topped with melted cheese and herbs.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹170</span>
+                    <button class="add-btn" onclick="addToCart('garlic_bread', 'Cheese Garlic Bread', 170, '/photos/bread.png')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+
+             </div> <div class="product-card">
+            <div class="img-container">
+                <img src="/photos/panner.png" class="product-img" alt="Paneer Rice Bowl">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Paneer Rice Bowl</h4>
+                <p class="product-desc">A wholesome bowl with grilled paneer, rice, vegetables, and flavorful sauce.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹270</span>
+                    <button class="add-btn" onclick="addToCart('paneer_rice', 'Paneer Rice Bowl', 270, '/photos/panner.png')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+
+            </div> <div class="product-card">
+            <div class="img-container">
+                <img src="/photos/pasta.jpeg" class="product-img" alt="Pasta Bowl">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Pasta Bowl</h4>
+                <p class="product-desc">Creamy pasta prepared with vegetables and signature café sauce.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹280</span>
+                    <button class="add-btn" onclick="addToCart('pasta_bowl', 'Pasta Bowl', 280, '/photos/pasta.jpeg')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+
+              </div> <div class="product-card">
+            <div class="img-container">
+                <img src="/photos/momo.jpeg" class="product-img" alt="Momo">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Momo</h4>
+                <p class="product-desc">Soft dumplings served with spicy chutney.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹180</span>
+                    <button class="add-btn" onclick="addToCart('momo', 'Momo', 180, '/photos/momo.jpeg')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+
+        </div> <div class="product-card">
+            <div class="img-container">
+                <span class="veg-icon"></span>
+                <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Garlic Bruschetta">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Garlic Bruschetta</h4>
+                <p class="product-desc">Toasted artisan herb bread layers topped with diced tomatoes.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹189</span>
+                    <button class="add-btn" onclick="addToCart('bruschetta', 'Garlic Bruschetta', 189, 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div> </div>
+</section>
 
                 <section id="mocktails" class="category-section">
                     <h3 class="section-header">Mocktails</h3>
@@ -812,28 +967,60 @@
                             <div class="img-container">
                                 <span class="badge new">New</span>
                                 <span class="veg-icon"></span>
-                                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Watermelon Mojito">
+                                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Virgin Mojito">
                             </div>
                             <div class="product-details">
-                                <h4 class="product-title">Watermelon Mojito</h4>
-                                <p class="product-desc">Crushed sweet watermelon juice paired with refreshing mint leaves.</p>
+                                <h4 class="product-title">Virgin Mojito</h4>
+                                <p class="product-desc">A refreshing blend of fresh mint, lime, sugar syrup, and sparkling soda served over ice.</p>
                                 <div class="product-footer">
-                                    <span class="product-price">₹179</span>
-                                    <button class="add-btn" onclick="addToCart('mojito', 'Watermelon Mojito', 179, 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
+                                    <span class="product-price">₹120</span>
+                                    <button class="add-btn" onclick="addToCart('mojito', 'Virgin Mojito', 120, 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
                                 </div>
                             </div>
                         </div>
-                        <div class="product-card">
+
+                         <div class="product-card">
                             <div class="img-container">
                                 <span class="veg-icon"></span>
-                                <img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Blue Lagoon">
+                                <img src="/photos/blue.jpeg" class="product-img" alt="Blue Lagoon">
                             </div>
                             <div class="product-details">
                                 <h4 class="product-title">Blue Lagoon</h4>
-                                <p class="product-desc">Tropical signature blue mix built using crisp citrus syrups.</p>
+                                <p class="product-desc">A vibrant citrus drink made with blue curaçao syrup, lemonade, and sparkling soda.</p>
                                 <div class="product-footer">
-                                    <span class="product-price">₹179</span>
-                                    <button class="add-btn" onclick="addToCart('lagoon', 'Blue Lagoon', 179, 'https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
+                                    <span class="product-price">₹130</span>
+                                    <button class="add-btn" onclick="addToCart('blue-lagoon', 'Blue Lagoon', 130, '/photos/blue.jpeg')">ADD <i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                          <div class="product-card">
+                            <div class="img-container">
+                                <span class="badge bestseller">Bestseller</span>
+                                <span class="veg-icon"></span>
+                                <img src="/photos/lychee.jpeg" class="product-img" alt="Lychee Sparkler">
+                            </div>
+                            <div class="product-details">
+                                <h4 class="product-title">Lychee Sparkler</h4>
+                                <p class="product-desc">Juicy lychee combined with lemon and sparkling soda for a light, floral refreshment.</p>
+                                <div class="product-footer">
+                                    <span class="product-price">₹150</span>
+                                    <button class="add-btn" onclick="addToCart('lychee-sparkler', 'Lychee Sparkler', 150, '/photos/lychee.jpeg')">ADD <i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="img-container">
+                                <span class="veg-icon"></span>
+                                <img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Strawberry Mojito">
+                            </div>
+                            <div class="product-details">
+                                <h4 class="product-title">Strawberry Mojito</h4>
+                                <p class="product-desc">Fresh strawberries, mint, lime, and sparkling soda for a fruity, refreshing twist.</p>
+                                <div class="product-footer">
+                                    <span class="product-price">₹130</span>
+                                    <button class="add-btn" onclick="addToCart('strawberry-mojito', 'Strawberry Mojito', 130, 'https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -841,26 +1028,60 @@
                 </section>
 
                 <section id="desserts" class="category-section">
-                    <h3 class="section-header">Desserts</h3>
-                    <div class="products-grid">
-                        <div class="product-card">
-                            <div class="img-container">
-                                <span class="badge bestseller">Bestseller</span>
-                                <span class="veg-icon"></span>
-                                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Chocolate Brownie">
-                            </div>
-                            <div class="product-details">
-                                <h4 class="product-title">Chocolate Brownie</h4>
-                                <p class="product-desc">Fudge variant brownie paired beautifully alongside vanilla scoop.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">₹199</span>
-                                    <button class="add-btn" onclick="addToCart('brownie', 'Chocolate Brownie', 199, 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+    <h3 class="section-header">Desserts</h3>
+    
+    <div class="products-grid">
+        
+        <div class="product-card">
+            <div class="img-container">
+                <span class="badge bestseller">Bestseller</span>
+                <span class="veg-icon"></span>
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=400" class="product-img" alt="Chocolate Brownie with Ice Cream">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Chocolate Brownie with Ice Cream</h4>
+                <p class="product-desc">Warm, fudgy chocolate brownie served with a scoop of creamy vanilla ice cream and chocolate drizzle.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹199</span>
+                    <button class="add-btn" onclick="addToCart('brownie', 'Chocolate Brownie with Ice Cream', 199, 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
 
+          <div class="product-card">
+            <div class="img-container">
+                <span class="badge new">new</span>
+                <span class="veg-icon"></span>
+                <img src="/photos/tiramisu.jpeg" class="product-img" alt="Tiramisu">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">Tiramisu</h4>
+                <p class="product-desc">A classic Italian dessert layered with espresso-soaked sponge, mascarpone cream, and a dusting of cocoa.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹250</span>
+                    <button class="add-btn" onclick="addToCart('tiramisu', 'Tiramisu', 250, '/photos/tiramisu.jpeg')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="img-container">
+                <span class="badge new">new</span>
+                <span class="veg-icon"></span>
+                <img src="/photos/newyork cheesecake.jpeg" class="product-img" alt="New York Cheesecake">
+            </div>
+            <div class="product-details">
+                <h4 class="product-title">New York Cheesecake</h4>
+                <p class="product-desc">Smooth and creamy cheesecake on a buttery biscuit crust with a rich, velvety finish.</p>
+                <div class="product-footer">
+                    <span class="product-price">₹230</span>
+                    <button class="add-btn" onclick="addToCart('cheesecake', 'New York Cheesecake', 230, '/photos/newyork cheesecake.jpeg')">ADD <i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+</div> 
+
+</section>
                 <section id="combos" class="category-section">
                     <h3 class="section-header">Special Combos</h3>
                     <div class="products-grid">
@@ -870,7 +1091,7 @@
                             </div>
                             <div class="product-details">
                                 <h4 class="product-title">Brew Special Combo</h4>
-                                <p class="product-desc">Handcrafted hot cappuccino served with a classic club sandwich.</p>
+                                <p class="product-desc">Handcrafted hot cappuccino served with a special baked chocolate chip cookie.</p>
                                 <div class="product-footer">
                                     <span class="product-price">₹399</span>
                                     <button class="add-btn" onclick="addToCart('combo', 'Brew Special Combo', 399, 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=400')">ADD <i class="fa-solid fa-plus"></i></button>
