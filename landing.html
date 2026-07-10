@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Brew House</title>
+    <!-- External Icon & Typography Assets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f6f0;
+            color: #222222;
+            overflow-x: hidden;
+            position: relative;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* --- VARIABLES --- */
+        :root {
+            --gold: #c5a059;
+            --dark-bg: #111111;
+            --brown-footer: #19120c;
+            --light-bg: #f9f6f0;
+            --text-dark: #222222;
+            --text-muted: #aaaaaa;
+        }
+
+        /* --- WATERMARK TEXT SYSTEM --- */
+        .watermark-wrapper {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            overflow: hidden;
+            line-height: 1;
+            pointer-events: none;
+            z-index: 0;
+            user-select: none;
+        }
+        .section-watermark {
+            font-family: 'Cinzel', serif;
+            font-size: 18vw;
+            font-weight: 700;
+            color: rgba(197, 159, 89, 0.147);
+            text-transform: uppercase;
+            white-space: nowrap;
+            display: block;
+        }
+        .watermark-left { text-align: left; padding-left: 4%; }
+        .watermark-right { text-align: right; padding-right: 4%; }
+
+        /* --- NEW DYNAMIC BACKGROUND GRAPHICS SYSTEM --- */
+        .bg-graphic {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.04;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+        
+        /* About Us Section - Bottom Left Graphic Layer */
+        .graphic-about-left-large {
+            bottom: -60px;
+            left: -120px;
+            width: 550px;
+            height: 550px;
+        }
+        
+        /* About Us Section - Far Right Grid Edge Graphic Layer */
+        .graphic-about-right-edge {
+            top: 15%;
+            right: -100px;
+            width: 480px;
+            height: 650px;
+        }
+
+        /* Menu Section - Bottom Left Outer Boundary Graphic Layer */
+        .graphic-menu-left-boundary {
+            bottom: -40px;
+            left: -140px;
+            width: 580px;
+            height: 580px;
+        }
+
+        /* Menu Section - Right Outer Border Graphic Layer */
+        .graphic-menu-right-boundary {
+            top: 20%;
+            right: -140px;
+            width: 500px;
+            height: 600px;
+        }
+
+        /* --- SCROLL ANIMATION SYSTEM --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HERO SECTION --- */
+        header {
+            position: relative;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.3) 100%), 
+                        url('background.jpg') no-repeat center center/cover;
+            min-height: 100vh;
+            padding: 20px 8% 90px 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 20px;
+            width: 100%;
+            z-index: 10;
+            position: relative;
+        }
+        .logo h1 { font-family: 'Cinzel', serif; font-size: 24px; letter-spacing: 2px; color: #fff; }
+        .logo span { font-size: 10px; text-transform: uppercase; letter-spacing: 4px; color: var(--text-muted); display: block; margin-top: 2px; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500; color: #fff; }
+        .nav-links a:hover { color: var(--gold); }
+        
+        .btn-reserve {
+            border: 2px solid var(--gold); background: var(--gold); color: #111;
+            padding: 12px 26px; font-size: 13px; font-weight: 600; text-transform: uppercase; border-radius: 4px;
+        }
+        .btn-reserve:hover { background: transparent; color: var(--gold); transform: translateY(-3px); }
+
+        .hero-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            flex-grow: 1;
+            position: relative;
+            gap: 20px;
+        }
+        
+        .hero-text { max-width: 600px; z-index: 2; }
+        .hero-text h3 { font-family: 'Great Vibes', cursive; color: var(--gold); font-size: 48px; margin-bottom: 10px; }
+        .hero-text h2 { font-family: 'Cinzel', serif; font-size: 76px; line-height: 1.1; margin-bottom: 25px; font-weight: 700; color: #fff; }
+        .hero-text p { color: #eeeeee; font-size: 15.5px; line-height: 1.8; margin-bottom: 35px; }
+
+        .hero-btns { display: flex; gap: 20px; }
+        .btn-primary {
+            background: var(--gold); border: 2px solid var(--gold); color: #111;
+            padding: 14px 32px; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px;
+            display: inline-flex; align-items: center; gap: 10px;
+        }
+        .btn-primary:hover { background: transparent; color: var(--gold); transform: translateY(-5px); }
+        .btn-secondary {
+            border: 2px solid #c59f59c5; background: transparent; color: #c59f59c8;
+            padding: 14px 32px; font-weight: 600; font-size: 13px; text-transform: uppercase; display: inline-block;
+        }
+        .btn-secondary:hover { background: #c59f59b8; color: #111; transform: translateY(-5px); }
+
+        .hero-card-wrapper {
+            position: relative;
+            z-index: 2;
+            align-self: stretch;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-grow: 1;
+        }
+
+        .hero-circle-widget {
+            position: absolute;
+            bottom: 0px;
+            right: 0;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 3px solid var(--gold);
+            padding: 8px;
+            z-index: 5;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+        .hero-circle-widget img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* --- FEATURES BAR --- */
+        .features-wrapper {
+            position: relative;
+            background-color: #0c0c0c;
+            padding: 60px 8%;
+            z-index: 3;
+            color: #fff;
+        }
+        .features-wrapper::before, .features-wrapper::after {
+            content: ""; position: absolute; left: 0; width: 100%; height: 40px; z-index: 4;
+        }
+        .features-wrapper::before {
+            top: -39px; 
+            background-color: #0c0c0c;
+            clip-path: polygon(0% 100%, 3% 65%, 6% 85%, 10% 50%, 14% 80%, 17% 60%, 20% 90%, 24% 55%, 28% 75%, 31% 40%, 35% 85%, 38% 60%, 42% 70%, 45% 45%, 49% 80%, 52% 50%, 56% 90%, 60% 65%, 63% 75%, 67% 40%, 71% 85%, 74% 55%, 78% 70%, 82% 45%, 85% 80%, 89% 50%, 93% 85%, 96% 60%, 100% 100%);
+        }
+        .features-wrapper::after {
+            bottom: -1px; background-color: var(--light-bg);
+            clip-path: polygon(0% 0%, 4% 45%, 7% 20%, 11% 55%, 15% 15%, 18% 40%, 22% 10%, 25% 50%, 29% 25%, 33% 60%, 36% 30%, 40% 45%, 44% 15%, 47% 55%, 51% 20%, 55% 50%, 58% 10%, 62% 40%, 66% 25%, 69% 60%, 73% 30%, 77% 45%, 80% 15%, 84% 55%, 88% 20%, 91% 45%, 95% 15%, 98% 35%, 100% 0%, 100% 100%, 0% 100%);
+        }
+
+        .features-bar { display: grid; grid-template-columns: repeat(5, 1fr); text-align: center; }
+        .feature-item { 
+            padding: 20px 20px; 
+            border-right: 1px solid #c5a05926;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .feature-item:last-child { border-right: none; }
+        
+        .feature-item .icon-box {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 60px; height: 60px; border-radius: 50%; background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(197, 160, 89, 0.2); margin-bottom: 15px;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .feature-item i { color: var(--gold); font-size: 22px; transition: all 0.4s ease; }
+        .feature-item h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; color: #ffffff; transition: all 0.4s ease; }
+        .feature-item p { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; transition: all 0.4s ease; }
+
+        .feature-item:hover { transform: translateY(-5px); }
+        .feature-item:hover .icon-box {
+            background: var(--gold); border-color: var(--gold); transform: scale(1.18);
+            box-shadow: 0 8px 20px rgba(197, 160, 89, 0.3);
+        }
+        .feature-item:hover i { color: #111; }
+        .feature-item:hover h4 { color: var(--gold); }
+        .feature-item:hover p { color: #ffffff; }
+
+        /* --- ABOUT US SECTION --- */
+        .about-section {
+            background-color: var(--light-bg);
+            color: #c39031;
+            font-weight: 700;
+            font-size: 22px; 
+            padding: 85px 8% 70px 8%;
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        .about-content { flex: 1.1; z-index: 3; position: relative; }
+        
+        /* Custom Color Styling for the About Us Main Heading */
+        .about-content h2 { 
+            font-family: 'Cinzel', serif; 
+            font-size: 42px; 
+            line-height: 1.25; 
+            margin-bottom: 25px; 
+            color: #2b1b10; /* Sophisticated Deep Espresso Brown */
+        }
+        .about-content h2 span { color: var(--gold); }
+        .about-content p { font-size: 15px; color: #444; line-height: 1.75; margin-bottom: 25px; }
+        .about-cursive { font-family: 'Great Vibes', cursive; font-size: 34px; color: var(--gold); margin: 20px 0; }
+
+        .btn-outline-gold {
+            display: inline-flex; align-items: center; gap: 10px;
+            border: 2px solid var(--gold); background: transparent; color: var(--text-dark);
+            padding: 12px 28px; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
+            border-radius: 4px; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .btn-outline-gold:hover {
+            background: var(--gold); color: #fff; transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(197, 160, 89, 0.25);
+        }
+
+        .about-images-wrapper { flex: 1; position: relative; z-index: 3; }
+        .about-images { display: grid; grid-template-columns: 1.2fr 1fr; grid-template-rows: 1fr 1fr; gap: 15px; z-index: 2; position: relative; }
+        .about-img-large { grid-row: span 2; height: 440px; border-radius: 12px; overflow: hidden; }
+        .about-img-small { height: 212px; border-radius: 12px; overflow: hidden; }
+        .about-images img { width: 100%; height: 100%; object-fit: cover; }
+
+        .perfect-badge-container {
+            position: absolute; bottom: -30px; left: -35px; width: 145px; height: 145px; z-index: 5;
+            animation: rotateSlowly 25s linear infinite;
+        }
+        @keyframes rotateSlowly {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .perfect-badge-svg { width: 100%; height: 100%; }
+        .badge-circle-bg { fill: #111111; stroke: var(--gold); stroke-width: 4; }
+        .badge-track { fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-dasharray: 4, 3; }
+        .badge-text { font-family: 'Cinzel', serif; font-size: 9px; font-weight: 700; fill: var(--gold); letter-spacing: 2px; }
+
+        /* --- MENU SECTION --- */
+        .offers-section {
+            background-color: var(--light-bg);
+            color: #c39031;
+            font-weight: 700;
+            font-size: 22px; 
+            padding: 70px 8%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Custom Color Styling for the What We Offer Main Heading */
+        .offers-section h2 { 
+            font-family: 'Cinzel', serif; 
+            font-size: 40px; 
+            margin-bottom: 50px; 
+            color: #000000; /* Luxurious Copper Bronze */
+        }
+        .offers-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; position: relative; z-index: 3; }
+        
+        .offer-card {
+            background: #ffffff; border-radius: 12px; overflow: visible;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04); text-align: left;
+            display: flex; flex-direction: column; height: 100%;
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); position: relative;
+        }
+        .offer-img-wrapper { height: 190px; position: relative; overflow: hidden; border-radius: 12px 12px 0 0; }
+        .offer-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        
+        .offer-icon-badge {
+            position: absolute; top: 165px; left: 22px; background: #1e1b15; color: var(--gold);
+            width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; 
+            justify-content: center; font-size: 19px; z-index: 10; border: 2px solid var(--gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        
+        .offer-info { padding: 40px 20px 22px 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .offer-info h4 { font-size: 15px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; color: var(--text-dark); font-family: 'Cinzel', serif; font-weight: 600; }
+        .offer-info p { font-size: 13.5px; color: #555; line-height: 1.6; margin-bottom: 20px; }
+        .view-menu-link { font-size: 11px; text-transform: uppercase; font-weight: 600; color: #111; display: flex; align-items: center; gap: 5px; }
+
+        .offer-card:hover {
+            background: #111111; transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .offer-card:hover .offer-img-wrapper img { transform: scale(1.1); }
+        .offer-card:hover .offer-info h4 { color: #ffffff; }
+        .offer-card:hover .offer-info p { color: #e5c17d; }
+        .offer-card:hover .view-menu-link { color: var(--gold); padding-left: 4px; }
+
+        /* --- CONTACT SECTION & FOOTER --- */
+        footer { 
+            background: linear-gradient(rgba(22, 14, 9, 0.617), rgba(15, 9, 5, 0.855)),
+                        url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=1000&auto=format&fit=crop') center center/cover;
+            padding: 0 8% 20px 8%; position: relative; color: #ffffff; z-index: 3;
+        }
+
+        .stats-bar { 
+            background: transparent; padding: 40px 0; display: grid; grid-template-columns: repeat(4, 1fr);
+            text-align: center; position: relative; border-bottom: 1px solid #c5a05926;
+        }
+        .stat-item { padding: 0 10px; border-right: 1px solid rgba(197, 160, 89, 0.15); }
+        .stat-item:last-child { border-right: none; }
+        .stat-item h3 { font-family: 'Cinzel', serif; font-size: 34px; color: var(--gold); margin-bottom: 4px; font-weight: 600; }
+        .stat-item p { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #dddddd; }
+
+        .footer-main-layout {
+            display: grid; grid-template-columns: 1.10fr 1.4fr 1.15fr 1.25fr 1.25fr;
+            padding: 45px 0; position: relative; z-index: 2; align-items: start;
+        }
+        .footer-column { padding: 0 25px; border-right: 1px solid rgba(197, 160, 89, 0.15); }
+        .footer-column:first-child { padding-left: 0; }
+        .footer-column:last-child { border-right: none; padding-right: 0; }
+        
+        .footer-column h4 { color: var(--gold); font-size: 12px; text-transform: uppercase; margin-bottom: 18px; letter-spacing: 1.5px; font-family: 'Cinzel', serif; }
+        .footer-column p, .footer-column li { font-size: 13px; color: #eae5e0; line-height: 1.8; margin-bottom: 8px; }
+        .footer-column ul { list-style: none; }
+        .footer-column a:hover { color: var(--gold); }
+        
+        .footer-logo-side { display: flex; flex-direction: column; align-items: flex-start; }
+        .footer-logo-side .brand-icon { font-size: 22px; color: var(--gold); margin-bottom: 8px; }
+        .footer-logo-side h3 { font-family: 'Cinzel', serif; font-size: 22px; letter-spacing: 1.5px; color: #c59f59e7; line-height: 1.1; }
+        .footer-logo-side p.brand-subtext { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; margin-top: 2px; margin-bottom: 15px; color: var(--gold); font-weight: 600; }
+        .footer-logo-side p.brand-desc { font-size: 12.5px; line-height: 1.6; color: #d6cfc7; }
+        
+        .social-icons { display: flex; gap: 8px; margin-top: 15px; }
+        .social-icons a { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); color: #e2dfda; font-size: 13px; }
+        .social-icons a:hover { color: #111; background: var(--gold); border-color: var(--gold); transform: translateY(-2px); }
+        
+        .contact-info-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; color: #ffffff; font-size: 13px; }
+        .contact-info-item i { color: var(--gold); font-size: 14px; margin-top: 3px; }
+        .contact-info-item .highlight-num { color: var(--gold); font-weight: 600; }
+
+        .footer-mug-wrapper { display: flex; align-items: center; justify-content: center; border-right: 1px solid rgba(197, 159, 89, 0.908); padding-right: 20px; }
+        .footer-mug-wrapper img {
+            width: 100%; max-width: 115px; border-radius: 50%; aspect-ratio: 1; 
+            object-fit: cover; border: 2px solid var(--gold); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.232);
+        }
+
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; text-align: center; font-size: 12px; color: #a39b94; }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 1250px) {
+            .offers-grid { grid-template-columns: repeat(3, 1fr); }
+            .footer-main-layout { grid-template-columns: 1fr 1fr; gap: 30px; }
+            .footer-column { border-right: none; padding: 0; }
+            .footer-mug-wrapper { display: none; }
+        }
+        @media (max-width: 768px) {
+            .hero-container { flex-direction: column; text-align: center; gap: 30px; }
+            .hero-btns { justify-content: center; }
+            .hero-card-wrapper { justify-content: center; width: 100%; height: 260px; }
+            .hero-circle-widget { right: 50%; transform: translateX(50%); bottom: 0; width: 180px; height: 180px; }
+            .features-bar { grid-template-columns: repeat(1, 1fr); gap: 20px; }
+            .feature-item { border-right: none; border-bottom: 1px solid rgba(197, 160, 89, 0.15); padding-bottom: 15px; }
+            .feature-item:last-child { border-bottom: none; }
+            .about-section { flex-direction: column; }
+            .about-images-wrapper { width: 100%; }
+            .offers-grid { grid-template-columns: repeat(1, 1fr); gap: 35px; }
+            .offer-icon-badge { top: 165px; }
+            .stats-bar { grid-template-columns: 1fr; gap: 20px; }
+            .stat-item { border-right: none; border-bottom: 1px solid rgba(197, 160, 89, 0.15); padding-bottom: 15px; }
+            .stat-item:last-child { border-bottom: none; }
+            .footer-main-layout { grid-template-columns: 1fr; gap: 30px; }
+            .footer-column { border-right: none; padding: 0; }
+            nav { flex-direction: column; gap: 15px; }
+            .bg-graphic { display: none; } 
+        }
+
+        /* --- EXTRA RESERVATION FORM STYLING --- */
+.res-input-field {
+    padding: 10px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 13px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.4); /* Transparent glass effect */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+/* Hover & Focus state for fields */
+.res-input-field:hover {
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.7);
+}
+.res-input-field:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: #ffffff;
+    box-shadow: 0 0 8px rgba(197, 160, 89, 0.2);
+}
+
+/* Premium submit button adjustments */
+.res-submit-btn {
+    background-color: #111;
+    color: #fff;
+    border: 2px solid #111;
+    padding: 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+.res-submit-btn:hover {
+    background-color: transparent;
+    color: #111;
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(197, 160, 89, 0.15);
+}
+    </style>
+</head>
+<body>
+
+    <header id="home">
+        <nav>
+            <div class="logo">
+                <i class="fa-solid fa-crown" style="color: var(--gold);"></i>
+                <h1>ROYAL BREW HOUSE</h1>
+                <span>Coffee • Bites • Memories</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#menu">Menu</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a href="#reservation" class="btn-reserve"><i class="fa-regular fa-calendar-days"></i> Reserve a Table</a>
+        </nav>
+
+        <div class="hero-container">
+            <div class="hero-text reveal active">
+                <h3>Where Every Sip Feels Royal</h3>
+                <h2>ROYAL BREW HOUSE</h2>
+                <p>Immerse yourself in an unparalleled culinary journey. We consciously curate a perfect balance of premium artisan coffee, deliciously crafted house bites, crisp refreshing seasonal drinks, and exquisite desserts designed to turn everyday rituals into moments of royalty.</p>
+                <div class="hero-btns">
+                    <a href="menu.html" class="btn-primary">Explore Our Menu <i class="fa-solid fa-arrow-right-long"></i></a>
+                    <a href="menu.html" class="btn-secondary">Visit Us</a>
+                </div>
+            </div>
+            
+            <div class="hero-card-wrapper reveal active">
+                <div class="hero-circle-widget">
+                    <img src="stamp.png" alt="Fresh Espresso Blend">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="features-wrapper">
+        <div class="features-bar reveal">
+            <div class="feature-item">
+                <div class="icon-box"><i class="fa-solid fa-mug-hot"></i></div>
+                <h4>Premium Coffee</h4>
+                <p>Handcrafted with the finest beans from around the world.</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon-box"><i class="fa-solid fa-seedling"></i></div>
+                <h4>Fresh & Tasty Food</h4>
+                <p>Delicious lunch & snacks prepared fresh daily.</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon-box"><i class="fa-solid fa-glass-water"></i></div>
+                <h4>Refreshing Drinks</h4>
+                <p>Mocktails & juices that refresh your mood.</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon-box"><i class="fa-solid fa-cake-candles"></i></div>
+                <h4>Irresistible Desserts</h4>
+                <p>Sweet endings for your perfect moments.</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon-box"><i class="fa-solid fa-chair"></i></div>
+                <h4>Cozy Ambience</h4>
+                <p>A warm & modern space to relax and unwind.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about-section">
+        <img class="bg-graphic graphic-about-left-large" src="3.png" alt="Decorative Coffee Asset Left">
+        <img class="bg-graphic graphic-about-right-edge" src="4.png" alt="Decorative Coffee Asset Right">
+
+        <div class="watermark-wrapper" style="top: -15px;">
+            <span class="section-watermark watermark-left">Royal</span>
+        </div>
+
+        <div class="about-content reveal">
+            <span class="section-tag">About Us</span>
+            <h2>Brewed with <span>Passion,</span><br>Served with <span>Royalty.</span></h2>
+            <p>At Royal Brew House, we believe in creating more than just great food and drinks — we craft experiences. Whether it's your morning coffee, a quick lunch, or a relaxed evening with friends, we're here to make every moment special.</p>
+            <div class="about-cursive">Good Coffee. Good Food. Good Times.</div>
+            
+            <a href="menu.html" class="btn-outline-gold">Our Menu <i class="fa-solid fa-arrow-right-long"></i></a>
+        </div>
+
+        <div class="about-images-wrapper reveal">
+            <div class="about-images">
+                <div class="about-img-large">
+                    <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1974&auto=format&fit=crop" alt="Cafe Interior">
+                </div>
+                <div class="about-img-small">
+                    <img src="coffee.png" alt="Coffee Latte Art">
+                </div>
+                <div class="about-img-small">
+                    <img src="sandwich.png" alt="Gourmet Sandwich">
+                </div>
+            </div>
+            
+            <div class="perfect-badge-container">
+                <svg class="perfect-badge-svg" viewBox="0 0 100 100">
+                    <defs>
+                        <path id="badgeTextPath" d="M 50, 50 m -31, 0 a 31,31 0 1,1 62,0 a 31,31 0 1,1 -62,0" />
+                    </defs>
+                    <circle class="badge-circle-bg" cx="50" cy="50" r="46" />
+                    <circle class="badge-track" cx="50" cy="50" r="41" />
+                    <circle class="badge-track" cx="50" cy="50" r="23" />
+                    <circle cx="50" cy="50" r="3.5" fill="var(--gold)" />
+                    <text class="badge-text">
+                        <textPath href="#badgeTextPath" startOffset="0%">• BREWED TO PERFECTION • ROYAL HOUSE</textPath>
+                    </text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU OFFERS SECTION -->
+    <section id="menu" class="offers-section">
+        <img class="bg-graphic graphic-menu-left-boundary" src="4.png" alt="Decorative Offer Graphic Left">
+        <img class="bg-graphic graphic-menu-right-boundary" src="3.png" alt="Decorative Offer Graphic Right">
+
+        <div class="watermark-wrapper" style="top: -25px;">
+            <span class="section-watermark watermark-right">Brew</span>
+        </div>
+
+        <span class="section-tag reveal">What We Offer</span>
+        <h2 class="reveal">Something for Every Mood</h2>
+        
+        <div class="offers-grid">
+            <div class="offer-card reveal">
+                <div class="offer-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1937&auto=format&fit=crop" alt="Coffee">
+                </div>
+                <div class="offer-icon-badge"><i class="fa-solid fa-mug-hot"></i></div>
+                <div class="offer-info">
+                    <div>
+                        <h4>Coffee</h4>
+                        <p>From classic espressos to creamy lattes, a perfect cup for every coffee lover.</p>
+                    </div>
+                    <a href="menu.html" class="view-menu-link">View Menu <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </div>
+            
+            <div class="offer-card reveal">
+                <div class="offer-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1539252554453-80ab65ce3586?q=80&w=1974&auto=format&fit=crop" alt="Lunch/Snacks">
+                </div>
+                <div class="offer-icon-badge"><i class="fa-solid fa-utensils"></i></div>
+                <div class="offer-info">
+                    <div>
+                        <h4>Lunch / Snacks</h4>
+                        <p>A variety of delicious meals & snacks to fuel your day.</p>
+                    </div>
+                    <a href="menu.html" class="view-menu-link">View Menu <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </div>
+            
+            <div class="offer-card reveal">
+                <div class="offer-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?q=80&w=2072&auto=format&fit=crop" alt="Mocktails/Juices">
+                </div>
+                <div class="offer-icon-badge"><i class="fa-solid fa-glass-martini-alt"></i></div>
+                <div class="offer-info">
+                    <div>
+                        <h4>Mocktails / Juices</h4>
+                        <p>Refreshing mocktails & healthy juices to uplift your mood.</p>
+                    </div>
+                    <a href="menu.html" class="view-menu-link">View Menu <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </div>
+
+            <div class="offer-card reveal">
+                <div class="offer-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=1974&auto=format&fit=crop" alt="Desserts">
+                </div>
+                <div class="offer-icon-badge"><i class="fa-solid fa-cake-candles"></i></div>
+                <div class="offer-info">
+                    <div>
+                        <h4>Desserts</h4>
+                        <p>Indulge in our decadent desserts, the perfect sweet treat.</p>
+                    </div>
+                    <a href="menu.html" class="view-menu-link">View Menu <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </div>
+
+            <div class="offer-card reveal">
+                <div class="offer-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?q=80&w=2071&auto=format&fit=crop" alt="Ambience">
+                </div>
+                <div class="offer-icon-badge"><i class="fa-solid fa-shop"></i></div>
+                <div class="offer-info">
+                    <div>
+                        <h4>Ambience</h4>
+                        <p>A cozy, modern space perfect for work, catchups or celebrations.</p>
+                    </div>
+                    <a href="menu.html" class="view-menu-link">View Menu <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- ========================================== -->
+<!-- REPLACED RESERVATION SECTION -->
+<!-- ========================================== -->
+<section id="reservation" style="padding: 60px 6%; background-color: #fff; border-top: 1px solid #e5dfd5;">
+    <div style="max-width: 520px; margin: 0 auto; text-align: center;">
+        <span style="font-family: 'Great Vibes', cursive; color: var(--gold); font-size: 28px; display: block; margin-bottom: 2px;">Book an Experience</span>
+        <h2 style="font-family: 'Cinzel', serif; font-size: 28px; letter-spacing: 2px; margin-bottom: 25px; font-weight: 600; color: #111;">Reserve A Table</h2>
+        
+        <form id="table-reservation-form" onsubmit="handleReservationSubmit(event)" style="display: flex; flex-direction: column; gap: 12px; text-align: left;">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <label style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #555;">Full Name *</label>
+                    <input type="text" id="res-name" class="res-input-field" required placeholder="John Doe">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <label style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #555;">Email Address *</label>
+                    <input type="email" id="res-email" class="res-input-field" required placeholder="john@example.com">
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <label style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #555;">Phone Number *</label>
+                    <input type="tel" id="res-phone" class="res-input-field" required placeholder="9876543210">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <label style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #555;">Number of Guests *</label>
+                    <input type="number" id="res-guests" class="res-input-field" required min="1" max="20" placeholder="2">
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+                <label style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #555;">Custom Requests / Comments</label>
+                <textarea id="res-comment" class="res-input-field" rows="3" placeholder="Let us know if you want any specific customization or celebration setups..." style="resize: none;"></textarea>
+            </div>
+
+            <!-- Inline Green Feedback Box -->
+            <div id="reservation-message" style="margin-top: 3px; font-size: 12px; font-weight: 500; text-align: center; display: none;"></div>
+
+            <button type="submit" class="res-submit-btn">
+                Confirm Reservation
+            </button>
+        </form>
+    </div>
+</section>
+
+    <footer id="contact">
+        <div class="stats-bar reveal">
+            <div class="stat-item">
+                <h3 class="counter-value" data-target="15">0</h3>
+                <p>Blends of Coffee</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="counter-value" data-target="50">0</h3>
+                <p>Food & Drink Options</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="counter-value" data-target="5000">0</h3>
+                <p>Happy Customers</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="counter-value" data-target="1">0</h3>
+                <p>Royal Experience</p>
+            </div>
+        </div>
+
+        <div class="footer-main-layout reveal">
+            <div class="footer-mug-wrapper">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=500&auto=format&fit=crop" alt="Coffee Cup Layout">
+            </div>
+
+            <div class="footer-column footer-logo-side">
+                <div class="brand-icon"><i class="fa-solid fa-crown"></i></div>
+                <h3>ROYAL BREW HOUSE</h3>
+                <p class="brand-desc">COFFEE • BITES • MOCKTAILS • DESSERTS</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Opening Hours</h4>
+                <p>Mon – Fri<br><span style="color:#fff; font-weight: 500;">8.00 AM - 10.00 PM</span></p>
+                <p style="margin-top: 10px;">Sat – Sun<br><span style="color:#fff; font-weight: 500;">9.00 AM - 11.00 PM</span></p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Visit Us</h4>
+                <div class="contact-info-item">
+                    <i class="fa-solid fa-location-dot"></i> 
+                    <span>123 Brew Street, Coffee City,<br>Brewland S60001</span>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fa-solid fa-phone"></i> 
+                    <span class="highlight-num">+91 98765 43210</span>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fa-solid fa-envelope"></i> 
+                    <span>hello@royalbrewhouse.com</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">&copy; 2026 Royal Brew House. All Rights Reserved. &#10084;</div>
+    </footer>
+
+    <script>
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { 
+                    entry.target.classList.add('active'); 
+                    if(entry.target.classList.contains('stats-bar')) {
+                        startCounting();
+                    }
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.reveal, .stats-bar').forEach(element => { observer.observe(element); });
+
+        function startCounting() {
+            const counters = document.querySelectorAll('.counter-value');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                counter.innerText = "0";
+                const speed = target / 35;
+                
+                const updateCount = () => {
+                    const count = +counter.innerText.replace('+', '');
+                    if (count < target) {
+                        const nextValue = Math.ceil(count + speed);
+                        if (nextValue >= target) {
+                            counter.innerText = target + (target > 1 ? '+' : '');
+                        } else {
+                            counter.innerText = nextValue;
+                            setTimeout(updateCount, 35);
+                        }
+                    } else {
+                        counter.innerText = target + (target > 1 ? '+' : '');
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        // reservation form submission handling
+function handleReservationSubmit(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('res-name').value;
+    const email = document.getElementById('res-email').value;
+    const phone = document.getElementById('res-phone').value;
+    const guests = document.getElementById('res-guests').value;
+    const comment = document.getElementById('res-comment').value || "None";
+    const messageBox = document.getElementById('reservation-message');
+
+    messageBox.style.display = 'none';
+
+    const submitBtn = event.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerText;
+    submitBtn.disabled = true;
+    submitBtn.innerText = "PROCESSING RESERVATION...";
+
+    fetch('http://localhost:3000/api/reservation', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, phone, guests, comment })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            messageBox.style.color = '#16a34a'; 
+            messageBox.innerHTML = `<i class="fa-solid fa-circle-check"></i> Table Reserved! A confirmation layout has been sent to ${email}`;
+            messageBox.style.display = 'block';
+            document.getElementById('table-reservation-form').reset();
+
+            // 🟢 ADD THIS TIMEOUT BLOCK RIGHT HERE
+            setTimeout(() => {
+                // Hides the message after 4000 milliseconds (4 seconds)
+                messageBox.style.display = 'none';
+            }, 4000); 
+
+        } else {
+            messageBox.style.color = '#dc2626'; 
+            messageBox.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Error: ${data.error || 'Failed to register reservation.'}`;
+            messageBox.style.display = 'block';
+        }
+        submitBtn.disabled = false;
+        submitBtn.innerText = originalText;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        messageBox.style.color = '#dc2626';
+        messageBox.innerHTML = `<i class="fa-solid fa-wifi"></i> Connection to booking server failed.`;
+        messageBox.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.innerText = originalText;
+    });
+}
+    </script>
+</body>
+</html>
