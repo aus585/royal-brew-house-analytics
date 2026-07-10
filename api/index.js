@@ -3,11 +3,9 @@ const cors = require('cors');
 const { Resend } = require('resend'); // Importing the API email service
 
 const app = express();
-const PORT = 3000;
 
 // Initialize Resend with your Secret API Key
-const resend = new Resend('re_XfpgktJd_HtYMtiWZUUU8mhARmbpepRzW');
-
+const resend = new Resend(process.env.RESEND_API_KEY);
 // Middleware configuration
 app.use(cors()); 
 app.use(express.json());
@@ -63,11 +61,4 @@ app.post('/api/reservation', async (req, res) => {
         res.status(500).json({ success: false, error: error.message });
     }
 }); // ➔ The reservation route ends here
-
-
-// ==========================================
-// 3. START SERVER PORT LISTEN
-// ==========================================
-app.listen(PORT, () => {
-    console.log(`Server executing live on: http://localhost:${PORT}`);
-});
+module.exports = app;
