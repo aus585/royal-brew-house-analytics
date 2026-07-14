@@ -551,462 +551,223 @@
 }
 
 
-
-
-
-/* ==================================
-      MOBILE PHONES
-================================== */
-
+/* ==================================================
+   ROYAL BREW HOUSE - PREMIUM MOBILE EXPERIENCE
+================================================== */
 @media(max-width:768px){
-
-
-body{
+/* GLOBAL MOBILE FIX */
+html,body{
+    width:100%;
     overflow-x:hidden;
 }
-
-
-/* HEADER */
-
+section{
+    overflow:hidden;
+}
+/* ================= NAVBAR ================= */
 header{
-
-    min-height:auto;
-    padding:20px 20px 60px;
-
+    padding:20px 18px 50px;
 }
-
-
-/* NAVBAR */
-
 nav{
-
-    flex-direction:column;
-    gap:20px;
-    text-align:center;
-
+    background:rgba(0,0,0,0.25);
+    backdrop-filter:blur(8px);
+    padding:18px;
+    border-radius:15px;
 }
-
-
+.logo{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.logo i{
+    font-size:22px;
+    margin-bottom:5px;
+}
 .logo h1{
-
-    font-size:20px;
+    font-size:19px;
+    letter-spacing:1.5px;
 }
-
-
-.logo span{
-
-    font-size:9px;
-    letter-spacing:2px;
-
-}
-
-
 .nav-links{
-
-    flex-direction:column;
-    gap:15px;
-
+    width:100%;
+    padding:15px 0;
 }
-
-
 .nav-links a{
-
-    font-size:13px;
-
+    padding:8px;
+    transition:.3s;
 }
-
-
+.nav-links a:hover{
+    background:rgba(197,160,89,.15);
+    border-radius:10px;
+}
 .btn-reserve{
-
-    width:100%;
-    text-align:center;
-
+    padding:14px;
+    border-radius:30px;
 }
-
-
-
-
-/* HERO SECTION */
-
-
+/* ================= HERO ================= */
 .hero-container{
-
-    flex-direction:column;
-    text-align:center;
-    margin-top:50px;
-
+    margin-top:40px;
 }
-
-
-
-.hero-text{
-
-    width:100%;
-
-}
-
-
-
 .hero-text h3{
-
-    font-size:35px;
-
+font-size:34px;
+line-height:1.2;
 }
-
-
-
 .hero-text h2{
-
-    font-size:36px;
-    line-height:1.2;
-
+font-size:38px;
+letter-spacing:1px;
 }
-
-
-
 .hero-text p{
-
-    font-size:14px;
-    line-height:1.7;
-
+font-size:14px;
+padding:0 5px;
 }
-
-
-
 .hero-btns{
-
-    flex-direction:column;
-    width:100%;
-    gap:15px;
-
+gap:12px;
 }
-
-
-
 .btn-primary,
 .btn-secondary{
-
-    width:100%;
-    justify-content:center;
-
+border-radius:30px;
+padding:15px 20px;
 }
-
-
-
-
-
-/* CIRCLE IMAGE */
-
+/* HERO IMAGE */
 .hero-card-wrapper{
-
-    height:220px;
-
+height:190px;
 }
-
-
 .hero-circle-widget{
-
-    width:150px;
-    height:150px;
-
+width:145px;
+height:145px;
+box-shadow:
+0 15px 30px rgba(0,0,0,.5);
 }
-
-
-
-
-
-/* FEATURES */
-
-
+/* ================= FEATURES ================= */
 .features-wrapper{
-
-    padding:40px 20px;
-
+padding:45px 18px;
 }
-
-
-
-.features-bar{
-
-    grid-template-columns:1fr;
-
-}
-
-
-
 .feature-item{
-
-    padding:20px 10px;
-
+background:rgba(255,255,255,.03);
+border-radius:15px;
 }
-
-
-
-
-/* ABOUT SECTION */
-
-
+.feature-item .icon-box{
+width:65px;
+height:65px;
+}
+/* ================= ABOUT ================= */
 .about-section{
-
-    flex-direction:column;
-    padding:60px 20px;
-    gap:40px;
-
+padding:60px 18px;
 }
-
-
-
+.about-content{
+text-align:center;
+}
 .about-content h2{
-
-    font-size:30px;
-
+font-size:29px;
 }
-
-
-
 .about-content p{
-
-    font-size:14px;
-
+font-size:14px;
 }
-
-
-
-.about-cursive{
-
-    font-size:28px;
-
+.btn-outline-gold{
+width:100%;
+justify-content:center;
+border-radius:30px;
 }
-
-
-
+/* IMAGE COLLAGE */
 .about-images{
-
-    grid-template-columns:1fr;
-    grid-template-rows:auto;
-
+gap:12px;
 }
-
-
-
 .about-img-large{
-
-    height:350px;
+height:320px;
 }
-
-
-
 .about-img-small{
-
-    height:220px;
-
+height:180px;
 }
-
-
-
 .perfect-badge-container{
-
-    width:100px;
-    height:100px;
-    left:-10px;
-
+bottom:-20px;
+left:10px;
+width:90px;
+height:90px;
 }
-
-
-
-
-/* WATERMARK */
-
-
-.section-watermark{
-
-    font-size:30vw;
-
-}
-
-
-
-
-
-/* MENU CARDS */
-
-
+/* ================= MENU ================= */
 .offers-section{
-
-    padding:50px 20px;
-
+padding:55px 18px;
 }
-
-
-
 .offers-section h2{
-
-    font-size:30px;
-
+font-size:28px;
 }
-
-
-.offers-grid{
-
-    grid-template-columns:1fr;
-    gap:30px;
-
+.offer-card{
+border-radius:18px;
+box-shadow:
+0 10px 25px rgba(0,0,0,.08);
 }
-
-
-
 .offer-img-wrapper{
-
-    height:220px;
-
+height:230px;
 }
-
-
-
-
-/* RESERVATION FORM */
-
-
-#reservation{
-
-    padding:50px 20px !important;
-
-}
-
-
-#table-reservation-form div[style*="grid-template-columns"]{
-
-    display:flex !important;
-    flex-direction:column;
-
-}
-
-
-
-
-
-/* FOOTER */
-
-
-footer{
-
-    padding:0 20px 20px;
-
-}
-
-
-
-.stats-bar{
-
-    grid-template-columns:1fr;
-
-}
-
-
-
-.stat-item h3{
-
-    font-size:30px;
-
-}
-
-
-
-.footer-main-layout{
-
-    grid-template-columns:1fr;
-
-    text-align:center;
-
-}
-
-
-
-.footer-logo-side{
-
-    align-items:center;
-
-}
-
-
-
-.footer-column{
-
-    text-align:center;
-
-}
-
-
-
-.contact-info-item{
-
-    justify-content:center;
-
-}
-
-
-
-.footer-mug-wrapper{
-
-    display:none;
-
-}
-
-
-
-}
-
-
-
-
-
-/* SMALL PHONES */
-
-@media(max-width:420px){
-
-
-.hero-text h2{
-
-    font-size:30px;
-
-}
-
-
-
-.hero-text h3{
-
-    font-size:30px;
-
-}
-
-
-
-.logo h1{
-
-    font-size:18px;
-
-}
-
-
-
-.about-content h2{
-
-    font-size:26px;
-
-}
-
-
-
 .offer-info{
-
-    padding:35px 15px 20px;
-
+padding:45px 20px 25px;
+}
+.view-menu-link{
+font-size:12px;
+}
+/* ================= RESERVATION ================= */
+#reservation{
+padding:55px 18px !important;
+}
+#reservation h2{
+font-size:25px !important;
+}
+.res-input-field{
+height:48px;
+border-radius:12px;
+}
+textarea.res-input-field{
+height:auto;
+}
+.res-submit-btn{
+height:50px;
+border-radius:30px;
+}
+/* ================= FOOTER ================= */
+footer{
+padding:0 18px 25px;
+}
+.stats-bar{
+padding:30px 0;
+}
+.stat-item{
+padding:20px;
+background:rgba(255,255,255,.03);
+border-radius:15px;
+}
+.footer-main-layout{
+gap:25px;
+}
+.social-icons{
+justify-content:center;
+}
+.social-icons a{
+width:42px;
+height:42px;
+}
+.footer-bottom{
+font-size:11px;
+}
 }
 
-
-
+/* ==========================
+   EXTRA SMALL DEVICES
+========================== */
+@media(max-width:390px){
+.hero-text h2{
+font-size:32px;
 }
-        
+.hero-text h3{
+font-size:30px;
+}
+.offer-img-wrapper{
+height:200px;
+}
+.about-img-large{
+height:280px;
+}
+.logo h1{
+font-size:17px;
+}
+}       
     </style>
 </head>
 <body>
