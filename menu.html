@@ -1368,6 +1368,14 @@
         }
 
         function addToCart(id, name, price, imgUrl) {
+
+             gtag('event', 'add_to_cart', {
+        item_id: id,
+        item_name: name,
+        price: price,
+        currency: 'INR'
+    });
+            
             if (cart[id]) {
                 cart[id].quantity += 1;
             } else {
