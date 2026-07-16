@@ -1157,6 +1157,13 @@ fetch('/api/reservation', {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+
+          // Send event to Google Analytics 4
+          gtag('event', 'table_reservation', {
+        reservation_type: 'table_booking',
+        guest_count: guests
+         });
+            
             messageBox.style.color = '#16a34a'; 
             messageBox.innerHTML = `<i class="fa-solid fa-circle-check"></i> Table Reserved! A confirmation layout has been sent to ${email}`;
             messageBox.style.display = 'block';
