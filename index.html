@@ -550,224 +550,300 @@
 
 }
 
+/* ====================================
+   PHONE RESPONSIVE (768px & BELOW)
+==================================== */
 
-/* ==================================================
-   ROYAL BREW HOUSE - PREMIUM MOBILE EXPERIENCE
-================================================== */
-@media(max-width:768px){
-/* GLOBAL MOBILE FIX */
-html,body{
-    width:100%;
-    overflow-x:hidden;
-}
-section{
-    overflow:hidden;
-}
-/* ================= NAVBAR ================= */
-header{
-    padding:20px 18px 50px;
-}
-nav{
-    background:rgba(0,0,0,0.25);
-    backdrop-filter:blur(8px);
-    padding:18px;
-    border-radius:15px;
-}
-.logo{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-}
-.logo i{
-    font-size:22px;
-    margin-bottom:5px;
-}
-.logo h1{
-    font-size:19px;
-    letter-spacing:1.5px;
-}
-.nav-links{
-    width:100%;
-    padding:15px 0;
-}
-.nav-links a{
-    padding:8px;
-    transition:.3s;
-}
-.nav-links a:hover{
-    background:rgba(197,160,89,.15);
-    border-radius:10px;
-}
-.btn-reserve{
-    padding:14px;
-    border-radius:30px;
-}
-/* ================= HERO ================= */
-.hero-container{
-    margin-top:40px;
-}
-.hero-text h3{
-font-size:34px;
-line-height:1.2;
-}
-.hero-text h2{
-font-size:38px;
-letter-spacing:1px;
-}
-.hero-text p{
-font-size:14px;
-padding:0 5px;
-}
-.hero-btns{
-gap:12px;
-}
-.btn-primary,
-.btn-secondary{
-border-radius:30px;
-padding:15px 20px;
-}
-/* HERO IMAGE */
-.hero-card-wrapper{
-height:190px;
-}
-.hero-circle-widget{
-width:145px;
-height:145px;
-box-shadow:
-0 15px 30px rgba(0,0,0,.5);
-}
-/* ================= FEATURES ================= */
-.features-wrapper{
-padding:45px 18px;
-}
-.feature-item{
-background:rgba(255,255,255,.03);
-border-radius:15px;
-}
-.feature-item .icon-box{
-width:65px;
-height:65px;
-}
-/* ================= ABOUT ================= */
-.about-section{
-padding:60px 18px;
-}
-.about-content{
-text-align:center;
-}
-.about-content h2{
-font-size:29px;
-}
-.about-content p{
-font-size:14px;
-}
-.btn-outline-gold{
-width:100%;
-justify-content:center;
-border-radius:30px;
-}
-/* IMAGE COLLAGE */
-.about-images{
-gap:12px;
-}
-.about-img-large{
-height:320px;
-}
-.about-img-small{
-height:180px;
-}
-.perfect-badge-container{
-bottom:-20px;
-left:10px;
-width:90px;
-height:90px;
-}
-/* ================= MENU ================= */
-.offers-section{
-padding:55px 18px;
-}
-.offers-section h2{
-font-size:28px;
-}
-.offer-card{
-border-radius:18px;
-box-shadow:
-0 10px 25px rgba(0,0,0,.08);
-}
-.offer-img-wrapper{
-height:230px;
-}
-.offer-info{
-padding:45px 20px 25px;
-}
-.view-menu-link{
-font-size:12px;
-}
-/* ================= RESERVATION ================= */
-#reservation{
-padding:55px 18px !important;
-}
-#reservation h2{
-font-size:25px !important;
-}
-.res-input-field{
-height:48px;
-border-radius:12px;
-}
-textarea.res-input-field{
-height:auto;
-}
-.res-submit-btn{
-height:50px;
-border-radius:30px;
-}
-/* ================= FOOTER ================= */
-footer{
-padding:0 18px 25px;
-}
-.stats-bar{
-padding:30px 0;
-}
-.stat-item{
-padding:20px;
-background:rgba(255,255,255,.03);
-border-radius:15px;
-}
-.footer-main-layout{
-gap:25px;
-}
-.social-icons{
-justify-content:center;
-}
-.social-icons a{
-width:42px;
-height:42px;
-}
-.footer-bottom{
-font-size:11px;
-}
+@media screen and (max-width:768px){
+
+    /* GLOBAL */
+
+    html,body{
+        overflow-x:hidden;
+    }
+
+    .bg-graphic,
+    .watermark-wrapper{
+        display:none;
+    }
+
+    /* HEADER */
+
+    header{
+        min-height:auto;
+        padding:20px;
+    }
+
+    nav{
+        flex-direction:column;
+        gap:18px;
+    }
+
+    .logo h1{
+        font-size:20px;
+        text-align:center;
+    }
+
+    .logo span{
+        text-align:center;
+    }
+
+    .nav-links{
+        flex-direction:column;
+        gap:12px;
+        width:100%;
+        align-items:center;
+    }
+
+    .nav-links a{
+        width:100%;
+        text-align:center;
+        padding:10px;
+    }
+
+    .btn-reserve{
+        width:100%;
+        text-align:center;
+    }
+
+    /* HERO */
+
+    .hero-container{
+        flex-direction:column;
+        text-align:center;
+        gap:40px;
+    }
+
+    .hero-text{
+        max-width:100%;
+    }
+
+    .hero-text h3{
+        font-size:28px;
+    }
+
+    .hero-text h2{
+        font-size:34px;
+        line-height:1.2;
+        word-break:break-word;
+    }
+
+    .hero-text p{
+        font-size:14px;
+        line-height:1.8;
+    }
+
+    .hero-btns{
+        flex-direction:column;
+        gap:12px;
+    }
+
+    .btn-primary,
+    .btn-secondary{
+        width:100%;
+        justify-content:center;
+    }
+
+    .hero-card-wrapper{
+        height:170px;
+    }
+
+    .hero-circle-widget{
+        position:relative;
+        width:150px;
+        height:150px;
+        right:auto;
+        bottom:auto;
+        transform:none;
+    }
+
+    .hero-circle-widget img{
+        object-fit:contain;
+        padding:8px;
+    }
+
+    /* FEATURES */
+
+    .features-wrapper{
+        padding:45px 20px;
+    }
+
+    .features-bar{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
+    .feature-item{
+        border:none;
+        padding:20px;
+        background:rgba(255,255,255,.03);
+        border-radius:15px;
+    }
+
+    /* ABOUT */
+
+    .about-section{
+        flex-direction:column;
+        padding:60px 20px;
+        gap:30px;
+    }
+
+    .about-content{
+        text-align:center;
+    }
+
+    .about-content h2{
+        font-size:28px;
+    }
+
+    .about-content p{
+        font-size:14px;
+    }
+
+    .btn-outline-gold{
+        width:100%;
+        justify-content:center;
+    }
+
+    .about-images{
+        grid-template-columns:1fr;
+    }
+
+    .about-img-large,
+    .about-img-small{
+        height:250px;
+    }
+
+    .perfect-badge-container{
+        display:none;
+    }
+
+    /* MENU */
+
+    .offers-section{
+        padding:60px 20px;
+    }
+
+    .offers-section h2{
+        font-size:28px;
+    }
+
+    .offers-grid{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+    .offer-img-wrapper{
+        height:220px;
+    }
+
+    .offer-icon-badge{
+        top:195px;
+    }
+
+    /* RESERVATION */
+
+    #reservation{
+        padding:60px 20px !important;
+    }
+
+    #reservation form > div{
+        grid-template-columns:1fr !important;
+    }
+
+    .res-input-field{
+        width:100%;
+    }
+
+    .res-submit-btn{
+        width:100%;
+    }
+
+    /* STATS */
+
+    .stats-bar{
+        grid-template-columns:1fr;
+    }
+
+    .stat-item{
+        border:none;
+        padding:20px;
+    }
+
+    /* FOOTER */
+
+    footer{
+        padding:0 20px 25px;
+    }
+
+    .footer-main-layout{
+        grid-template-columns:1fr;
+        text-align:center;
+        gap:30px;
+    }
+
+    .footer-column{
+        border:none;
+        padding:0;
+    }
+
+    .footer-logo-side{
+        align-items:center;
+    }
+
+    .contact-info-item{
+        justify-content:center;
+    }
+
+    .social-icons{
+        justify-content:center;
+    }
+
+    .footer-mug-wrapper{
+        display:none;
+    }
 }
 
-/* ==========================
-   EXTRA SMALL DEVICES
-========================== */
-@media(max-width:390px){
-.hero-text h2{
-font-size:32px;
+
+/* EXTRA SMALL PHONES */
+
+@media screen and (max-width:390px){
+
+    .hero-text h2{
+        font-size:30px;
+    }
+
+    .hero-text h3{
+        font-size:24px;
+    }
+
+    .about-content h2{
+        font-size:24px;
+    }
+
+    .offers-section h2{
+        font-size:24px;
+    }
+
+    .logo h1{
+        font-size:17px;
+    }
+
+    .hero-circle-widget{
+        width:130px;
+        height:130px;
+    }
+
+    .about-img-large,
+    .about-img-small{
+        height:220px;
+    }
+
+    .offer-img-wrapper{
+        height:200px;
+    }
+
 }
-.hero-text h3{
-font-size:30px;
-}
-.offer-img-wrapper{
-height:200px;
-}
-.about-img-large{
-height:280px;
-}
-.logo h1{
-font-size:17px;
-}
-}       
     </style>
 </head>
 <body>
